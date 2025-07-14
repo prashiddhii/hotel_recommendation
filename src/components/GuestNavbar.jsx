@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { isAuthenticated, logout } from "../utils/auth";
 
-const Navbar = () => {
+const GuestNavbar = () => {
   const [show, setShow] = useState(false);
 
   const handleLogout = () => {
@@ -99,4 +99,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default GuestNavbar;

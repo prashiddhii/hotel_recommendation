@@ -8,33 +8,37 @@ import {
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Navbar from "./components/Navbar";
 import Recommendation from "./components/Recommendation";
-import { isAuthenticated } from "./utils/auth"; // helper to check token
+import { isAuthenticated } from "./utils/auth";
 
-// App.jsx
+// Import both navbars
+import GuestNavbar from "./components/GuestNavbar"; // guest version
+import UserNavbar from "./components/UserNavbar"; // logged-in version
+
 function App() {
   return (
     <Router>
-      <Navbar /> {/* Always visible */}
+      {/* Conditional Navbar */}
+      {isAuthenticated() ? <UserNavbar /> : <GuestNavbar />}
+
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<Home />} /> {/* Contains HeroSection */}
-        
+        <Route path="/" element={<Home />} />
+
         {/* Auth Routes */}
-        <Route 
-          path="/login" 
-          element={isAuthenticated() ? <Navigate to="/" /> : <Login />} 
+        <Route
+          path="/login"
+          element={isAuthenticated() ? <Navigate to="/" /> : <Login />}
         />
-        <Route 
-          path="/register" 
-          element={isAuthenticated() ? <Navigate to="/" /> : <Register />} 
+        <Route
+          path="/register"
+          element={isAuthenticated() ? <Navigate to="/" /> : <Register />}
         />
 
-        {/* Protected Recommendation Page */}
-        <Route 
-          path="/recommendations" 
-          element={isAuthenticated() ? <Recommendation /> : <Navigate to="/login" />} 
+        {/* Protected Route */}
+        <Route
+          path="/recommendations"
+          element={isAuthenticated() ? <Recommendation /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

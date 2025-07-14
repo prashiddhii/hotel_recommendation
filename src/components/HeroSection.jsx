@@ -9,15 +9,15 @@ const HeroSection = () => {
   const handleFindStayClick = () => {
     if (!isAuthenticated()) {
       // Redirect to login with return path
-      navigate("/login", { state: { from: "/#recommendations" } });
+      navigate("/login", { state: { from: "/#recommendation" } });
     } else {
       // Scroll to recommendations if on same page
-      const recommendationsElement = document.getElementById("recommendations");
+      const recommendationsElement = document.getElementById("recommendation");
       if (recommendationsElement) {
         recommendationsElement.scrollIntoView({ behavior: "smooth" });
       } else {
         // If recommendations is a separate page
-        navigate("/recommendations");
+        navigate("/recommendation");
       }
     }
   };

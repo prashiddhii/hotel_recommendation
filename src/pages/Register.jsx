@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { login } from "../utils/auth"; // your login util to save tokens
+import { login } from "../utils/auth"; 
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -26,11 +26,10 @@ const Register = () => {
     try {
       const res = await axios.post("http://localhost:8000/api/register/", form);
 
-      // If backend returns token after registration, store it
       if (res.data.access) {
-        // Assuming backend returns JWT tokens after registration
+        // Backend returns JWT Tokens after registering
         login(res.data.access, res.data.refresh);
-        navigate("/"); // Redirect to home after login
+        navigate("/"); 
       } else {
         setSuccess("Registration successful! Please login.");
         setTimeout(() => navigate("/login"), 2000);
@@ -39,16 +38,13 @@ const Register = () => {
       if (err.response && err.response.data) {
         const data = err.response.data;
 
-        // If backend returns an object with field errors like { username: [...], email: [...] }
         if (typeof data === "object") {
-          // Extract first error message from the first field
           const firstKey = Object.keys(data)[0];
           const firstErrorMsg = Array.isArray(data[firstKey])
             ? data[firstKey][0]
             : data[firstKey];
           setError(firstErrorMsg || "Registration failed.");
         } else if (typeof data === "string") {
-          // If backend sends a string error message
           setError(data);
         } else {
           setError("Registration failed.");
