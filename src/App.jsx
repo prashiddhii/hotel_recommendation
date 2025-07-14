@@ -14,6 +14,7 @@ import { isAuthenticated } from "./utils/auth";
 // Import both navbars
 import GuestNavbar from "./components/GuestNavbar"; // guest version
 import UserNavbar from "./components/UserNavbar"; // logged-in version
+import Popular from "./components/Popular";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/popular" element={<Popular />} />
+    
 
         {/* Auth Routes */}
         <Route
@@ -37,7 +40,7 @@ function App() {
 
         {/* Protected Route */}
         <Route
-          path="/recommendations"
+          path="/recommendation"
           element={isAuthenticated() ? <Recommendation /> : <Navigate to="/login" />}
         />
       </Routes>
