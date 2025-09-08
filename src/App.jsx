@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 import Recommendation from "./components/Recommendation";
 import { isAuthenticated } from "./utils/auth";
 
-// Import both navbars
+
 import GuestNavbar from "./components/GuestNavbar"; // guest version
 import UserNavbar from "./components/UserNavbar"; // logged-in version
 import Popular from "./components/Popular";

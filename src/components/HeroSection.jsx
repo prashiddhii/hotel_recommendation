@@ -30,7 +30,7 @@ const HeroSection = () => {
           {/* Left Side */}
           <div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Book Your Stay
+              Select Your Stay
               <br />
               With <span className="text-blue-950">BookMyGo</span>
             </h1>

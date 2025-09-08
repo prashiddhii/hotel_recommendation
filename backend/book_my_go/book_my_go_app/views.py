@@ -11,6 +11,9 @@ from .filtering import recommend_hotels
 import pandas as pd
 import os
 from django.conf import settings
+from .ml_utils import predict_sentiment
+from rest_framework.decorators import api_view
+
 
 
 class RegisterView(generics.CreateAPIView):
@@ -46,3 +49,13 @@ class AreaListView(APIView):
         df = pd.read_csv(csv_path)
         unique_areas = df['Area'].dropna().unique()
         return Response(sorted(unique_areas))
+    
+@api_view(["POST"])
+def analyze_review(request):
+    review_text = request.data.get("review", "")
+
+    if not review_text.strip():
+        return Response({"error": "Empty review provided"}, status=400)
+
+    sentiment = predict_sentiment(review_text)
+    return Response({"sentiment": sentiment})

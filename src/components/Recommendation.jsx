@@ -152,11 +152,52 @@ const Recommendation = () => {
                   key={idx}
                   className="border border-gray-200 rounded-md p-4 shadow-sm"
                 >
-                  <h3 className="font-bold text-lg">{hotel.Name}</h3>
-                  <p className="text-gray-600">{hotel.Area}</p>
+                  <h3 className="font-bold text-lg">{hotel.name || hotel.Name}</h3>
+                  <p className="text-gray-600">{hotel.area || hotel.Area}</p>
                   <p className="text-blue-700 font-semibold">
-                    Rating: {hotel["Rating(Out of 10)"]}
+                    Rating: {hotel.avg_rating || hotel["Rating(Out of 10)"]}
                   </p>
+
+                  {/* Summary sentiment */}
+                  {<p className="mt-1 text-gray-800">
+                    Overall Sentiment:{" "}
+                    <span
+                      className={`font-bold ${
+                        hotel.review_summary === "positive"
+                          ? "text-green-600"
+                          : hotel.review_summary === "negative"
+                          ? "text-red-600"
+                          : "text-gray-600"
+                      }`}
+                    >
+                      {hotel.review_summary}
+                    </span>
+                  </p> }
+
+                  {/* Per-review sentiments */}
+                  {hotel.reviews && hotel.reviews.length > 0 && (
+                    <div className="mt-2 max-h-40 overflow-y-auto text-sm">
+                      <p className="font-semibold">Reviews:</p>
+                      <ul className="space-y-1">
+                        {hotel.reviews.map((rev, i) => (
+                          <li key={i} className="flex justify-between">
+                            <span>{rev.review_text}</span>
+                            <span
+                              className={`ml-2 font-bold ${
+                                rev.sentiment === "positive"
+                                  ? "text-green-600"
+                                  : rev.sentiment === "negative"
+                                  ? "text-red-600"
+                                  : "text-gray-600"
+                              }`}
+                            >
+                              {rev.sentiment} ({rev.confidence.toFixed(2)})
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
