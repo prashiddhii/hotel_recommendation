@@ -21,12 +21,12 @@ const UserNavbar = () => {
 
       {/* Desktop Links */}
       <div className="hidden md:flex items-center space-x-6">
-        <Link
+        {/* <Link
           to="/about"
           className="text-gray-600 hover:text-blue-950 transition"
         >
           About
-        </Link>
+        </Link> */}
         <Link
           to="/popular"
           className="text-gray-600 hover:text-blue-950 transition"
@@ -59,13 +59,13 @@ const UserNavbar = () => {
       {/* Mobile Menu */}
       {show && (
         <div className="absolute top-16 right-4 bg-white p-4 rounded-lg shadow-lg flex flex-col gap-4 md:hidden z-50">
-          <Link
+          {/* <Link
             to="/about"
             className="text-gray-600 hover:text-blue-950"
             onClick={() => setShow(false)}
           >
             About
-          </Link>
+          </Link> */}
           <Link
             to="/popular"
             className="text-gray-600 hover:text-blue-950"

@@ -26,6 +26,7 @@ const Login = () => {
         {error && <p className="text-red-600 text-center">{error}</p>}
 
         <input
+          id="username"
           type="text"
           placeholder="Username"
           className="w-full border p-2 rounded"
@@ -35,6 +36,7 @@ const Login = () => {
         />
 
         <input
+          id="password"
           type="password"
           placeholder="Password"
           className="w-full border p-2 rounded"
@@ -44,6 +46,7 @@ const Login = () => {
         />
 
         <button
+          id="loginBtn"
           type="submit"
           className="bg-blue-900 text-white px-4 py-2 rounded w-full hover:bg-blue-800 transition cursor-pointer"
         >
